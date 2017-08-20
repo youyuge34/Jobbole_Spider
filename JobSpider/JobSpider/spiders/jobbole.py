@@ -21,7 +21,10 @@ class JobboleSpider(scrapy.Spider):
             yield Request(url=urlparse.urljoin(response.url, post_url), callback=self.parse_detail)
             # print post_url
 
-            # 提取下一页面交给scrapy
+        # 提取下一页面交给scrapy
+        next_urls = response.css('.next.page-numbers::attr(href)').extract_first('')
+        if next_urls:
+            yield Request(url=urlparse.urljoin(response.url, next_urls), callback=self.parse)
 
     def parse_detail(self, response):
         """
@@ -37,13 +40,15 @@ class JobboleSpider(scrapy.Spider):
         #过滤掉收藏数里的中文字
         match_re = re.match(".*?(\d+).*", fav_nums)
         if match_re:
-            fav_nums = match_re.group(1)
+            fav_nums = int(match_re.group(1))
+        else:
+            fav_nums = 0
 
         #评论数
         comment_nums = response.xpath("//a[@href='#article-comment']/span/text()").extract()[0]
         match_re = re.match(".*?(\d+).*", comment_nums)
         if match_re:
-            comment_nums = match_re.group(1)
+            comment_nums = int(match_re.group(1))
         else:
             comment_nums = 0
 
