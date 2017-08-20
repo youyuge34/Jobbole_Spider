@@ -1,14 +1,34 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import re
-
+from scrapy.http import Request
+import urlparse
 
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
-    start_urls = ['http://blog.jobbole.com/112214/']
+    start_urls = ['http://blog.jobbole.com/all-posts/']
 
     def parse(self, response):
+        """
+        1. 获取文章列表页中的文章url并交给scrapy下载后并进行解析
+        2. 获取下一页的url并交给scrapy进行下载， 下载完成后交给parse
+        """
+        # 解析列表页中的所有文章url并交给scrapy下载后并进行解析
+        post_urls = response.css('#archive .floated-thumb .post-thumb a::attr(href)').extract()
+        for post_url in post_urls:
+            # yield 直接交给scrapy进行下载
+            yield Request(url=urlparse.urljoin(response.url, post_url), callback=self.parse_detail)
+            # print post_url
+
+            # 提取下一页面交给scrapy
+
+    def parse_detail(self, response):
+        """
+        解析文章详情页面的信息,是下载后的回调函数
+        :param response:
+        :return:
+        """
         title = response.xpath('//div[@class="entry-header"]/h1/text()').extract_first("")
         create_date = response.xpath("//p[@class='entry-meta-hide-on-mobile']/text()").extract()[0].strip().replace("·","").strip()
         praise_nums = response.xpath("//span[contains(@class, 'vote-post-up')]/h10/text()").extract()[0]
@@ -59,7 +79,6 @@ class JobboleSpider(scrapy.Spider):
         # tag_list = response.css("p.entry-meta-hide-on-mobile a::text").extract()
         # tag_list = [element for element in tag_list if not element.strip().endswith(u"评论")]
         # tags = ",".join(tag_list)
-
         print title
         print create_date
         print praise_nums
