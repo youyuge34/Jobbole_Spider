@@ -4,7 +4,7 @@ import re
 from scrapy.http import Request
 import urlparse
 from JobSpider.items import JobBoleArticleItem
-
+from JobSpider.utils.common import get_md5
 
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
@@ -70,8 +70,9 @@ class JobboleSpider(scrapy.Spider):
 
         article_item["title"] = title
         article_item["url"] = response.url
+        article_item["url_object_id"] = get_md5(url=response.url)
         article_item["create_date"] = create_date
-        article_item["front_image_url"] = [front_image_url]
+        article_item["front_image_url"] = [front_image_url]  # 必须要是list形式才能用内置的images pipeline
         article_item["praise_nums"] = praise_nums
         article_item["comment_nums"] = comment_nums
         article_item["fav_nums"] = fav_nums
