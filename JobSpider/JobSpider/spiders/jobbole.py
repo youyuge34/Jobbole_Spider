@@ -9,7 +9,7 @@ from JobSpider.utils.common import get_md5
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
-    start_urls = ['http://blog.jobbole.com/all-posts/']
+    start_urls = ['http://blog.jobbole.com/all-posts/page/75']
 
     def parse(self, response):
         """

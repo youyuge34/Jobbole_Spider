@@ -66,7 +66,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines,数字越小，管道越先执行
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'JobSpider.pipelines.JobspiderPipeline': 300,
+   'JobSpider.pipelines.JsonExporterPipeline': 2,
    # 'scrapy.pipelines.images.ImagesPipeline': 1
    'JobSpider.pipelines.ArticleImagePipeline': 1
 }
