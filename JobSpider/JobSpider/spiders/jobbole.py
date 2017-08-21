@@ -5,11 +5,12 @@ from scrapy.http import Request
 import urlparse
 from JobSpider.items import JobBoleArticleItem
 from JobSpider.utils.common import get_md5
+import datetime
 
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
-    start_urls = ['http://blog.jobbole.com/all-posts/page/75']
+    start_urls = ['http://blog.jobbole.com/all-posts/page/72']
 
     def parse(self, response):
         """
@@ -71,6 +72,10 @@ class JobboleSpider(scrapy.Spider):
         article_item["title"] = title
         article_item["url"] = response.url
         article_item["url_object_id"] = get_md5(url=response.url)
+        try:
+            create_date = datetime.datetime.strptime(create_date, '%Y/%m/%d').date()
+        except Exception as e:
+            create_date = datetime.datetime.now().date()
         article_item["create_date"] = create_date
         article_item["front_image_url"] = [front_image_url]  # 必须要是list形式才能用内置的images pipeline
         article_item["praise_nums"] = praise_nums
