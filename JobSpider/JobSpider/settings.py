@@ -67,8 +67,9 @@ ROBOTSTXT_OBEY = False
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'JobSpider.pipelines.JsonExporterPipeline': 2,
+   # 'JobSpider.pipelines.MysqlPipeline': 2,
    # 'scrapy.pipelines.images.ImagesPipeline': 1
-   'JobSpider.pipelines.ArticleImagePipeline': 1
+   # 'JobSpider.pipelines.ArticleImagePipeline': 1
 }
 IMAGES_URLS_FIELD = "front_image_url"
 project_dir = os.path.abspath(os.path.dirname(__file__))

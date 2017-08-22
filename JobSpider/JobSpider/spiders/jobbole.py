@@ -10,7 +10,7 @@ import datetime
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
-    start_urls = ['http://blog.jobbole.com/all-posts/page/72']
+    start_urls = ['http://blog.jobbole.com/all-posts/page/2']
 
     def parse(self, response):
         """
@@ -73,7 +73,7 @@ class JobboleSpider(scrapy.Spider):
         article_item["url"] = response.url
         article_item["url_object_id"] = get_md5(url=response.url)
         try:
-            create_date = datetime.datetime.strptime(create_date, '%Y/%m/%d').date()
+            create_date = datetime.datetime.strptime(create_date.encode('utf-8'), '%Y/%m/%d ·').date()
         except Exception as e:
             create_date = datetime.datetime.now().date()
         article_item["create_date"] = create_date
