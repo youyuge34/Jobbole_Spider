@@ -122,6 +122,7 @@ class JsonExporterPipeline(object):
 
 class ArticleImagePipeline(ImagesPipeline):
     def item_completed(self, results, item, info):
-        image_paths = [x['path'] for ok, x in results if ok]
+        if "front_image_url" in item:
+            image_paths = [x['path'] for ok, x in results if ok]
         item['front_image_path'] = image_paths
         return item  # 传递给下一个pipeline
