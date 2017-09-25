@@ -101,6 +101,9 @@ IMAGES_STORE = os.path.join(project_dir, 'images')
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 MYSQL_HOST = '127.0.0.1'
-MYSQL_DBNAME = "article"
+MYSQL_DBNAME = "test"
 MYSQL_USER = "root"
-MYSQL_PASSWORD = ""
+MYSQL_PASSWORD = "qwert12345"
+
+SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+SQL_DATE_FORMAT = "%Y-%m-%d"

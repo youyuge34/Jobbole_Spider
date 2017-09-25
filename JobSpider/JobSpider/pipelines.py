@@ -55,7 +55,7 @@ class MysqlPipeline(object):
 
 class MysqlTwistedPipeline(object):
     """
-        利用twist的异步容器，异步写入MySQL，因为scrapy解析速度》MySQL写入速度
+    利用twist的异步容器，异步写入MySQL，因为scrapy解析速度》MySQL写入速度
     """
 
     def __init__(self, dbpool):
@@ -92,13 +92,8 @@ class MysqlTwistedPipeline(object):
     def do_insert(self, cursor, item):
         # 执行具体的插入
         # 根据不同的item 构建不同的sql语句并插入到mysql中
-        insert_sql = """
-                      insert into jobbole_article(title, url, create_date, fav_nums)
-                      VALUES (%s, %s, %s, %s)
-                """
-        # print (insert_sql, params)
-        cursor.execute(insert_sql, (item["title"], item["url"], item["create_date"], item["fav_nums"]))
-
+        insert_sql, params = item.get_insert_sql()
+        cursor.execute(insert_sql, params)
 
 class JsonExporterPipeline(object):
     """
