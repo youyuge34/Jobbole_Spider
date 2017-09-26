@@ -47,15 +47,15 @@ DOWNLOAD_DELAY = 0.25
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'JobSpider.middlewares.JobspiderSpiderMiddleware': 543,
-#}
+# SPIDER_MIDDLEWARES = {
+# }
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'JobSpider.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'JobSpider.middlewares.RandomUserAgentMiddlware': 543,
+   'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -75,6 +75,9 @@ ITEM_PIPELINES = {
 IMAGES_URLS_FIELD = "front_image_url"
 project_dir = os.path.abspath(os.path.dirname(__file__))
 IMAGES_STORE = os.path.join(project_dir, 'images')
+
+# 在RandomUserAgentMiddlware中会调用此配置，默认为random
+RANDOM_UA_TYPE = "random"
 
 # IMAGES_MIN_HEIGHT = 100
 # IMAGES_MIN_WIDTH = 100
