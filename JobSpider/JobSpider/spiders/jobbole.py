@@ -11,7 +11,7 @@ from scrapy.loader import ItemLoader
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
-    start_urls = ['http://blog.jobbole.com/all-posts/page/3']
+    start_urls = ['http://blog.jobbole.com/all-posts/page/1']
 
     def parse(self, response):
         """

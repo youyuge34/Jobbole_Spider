@@ -65,8 +65,6 @@ class MysqlTwistedPipeline(object):
     def from_settings(cls, settings):
         """
         被scrapy调用，回调传入我们的settings.py
-        :param settings:
-        :return:
         """
         dbparms = dict(
             host=settings["MYSQL_HOST"],
@@ -90,7 +88,7 @@ class MysqlTwistedPipeline(object):
         print (failure)
 
     def do_insert(self, cursor, item):
-        # 执行具体的插入
+        # 执行具体的插入， 插入逻辑封装在item中，利用多态特性降低耦合
         # 根据不同的item 构建不同的sql语句并插入到mysql中
         insert_sql, params = item.get_insert_sql()
         cursor.execute(insert_sql, params)
@@ -117,6 +115,7 @@ class JsonExporterPipeline(object):
 
 class ArticleImagePipeline(ImagesPipeline):
     def item_completed(self, results, item, info):
+        image_paths = ''
         if "front_image_url" in item:
             image_paths = [x['path'] for ok, x in results if ok]
         item['front_image_path'] = image_paths

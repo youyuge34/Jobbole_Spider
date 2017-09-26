@@ -13,6 +13,6 @@ import os
 # sys.path.append('F:\PythonProjects\Scrapy_Job\JobSpider')
 sys.path.append(os.path.dirname(os.path.abspath(__file__))) #动态获取本文件的父文件夹路径
 
-# execute(['scrapy','crawl','jobbole'])
+execute(['scrapy', 'crawl', 'jobbole'])
 # execute(['scrapy','crawl','zhihu'])
-execute(['scrapy', 'crawl', 'lagou'])
+# execute(['scrapy', 'crawl', 'lagou'])
