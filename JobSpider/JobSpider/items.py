@@ -84,6 +84,7 @@ class JobBoleArticleItem(scrapy.Item):
     )
     content = scrapy.Field()
 
+
     def get_insert_sql(self):
         insert_sql = """
             insert into jobbole_article(title, url, create_date, fav_nums)
@@ -106,7 +107,7 @@ def remove_splash(value):
 
 def handle_jobaddr(value):
     addr_list = value.split("\n")
-    addr_list = [item.strip() for item in addr_list if item.strip() != "查看地图"]
+    addr_list = [item.strip() for item in addr_list if item.strip().encode('utf8') != "查看地图"]
     return "".join(addr_list)
 
 
@@ -141,7 +142,7 @@ class LagouJobItem(scrapy.Item):
 
     def get_insert_sql(self):
         insert_sql = """
-            insert into lagou_job(title, url, url_object_id, salary, job_city, work_years, degree_need,
+            insert into article_lagou(title, url, url_object_id, salary, job_city, work_years, degree_need,
             job_type, publish_time, job_advantage, job_desc, job_addr, company_name, company_url,
             tags, crawl_time) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             ON DUPLICATE KEY UPDATE salary=VALUES(salary), job_desc=VALUES(job_desc)
@@ -153,3 +154,5 @@ class LagouJobItem(scrapy.Item):
             self["job_addr"], self["company_name"], self["company_url"],
             self["job_addr"], self["crawl_time"].strftime(SQL_DATETIME_FORMAT),
         )
+
+        return insert_sql, params
