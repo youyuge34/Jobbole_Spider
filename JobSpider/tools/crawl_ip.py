@@ -21,11 +21,18 @@ conn = MySQLdb.connect(host=MYSQL_HOST, user=MYSQL_USER, passwd=MYSQL_PASSWORD,
 cursor = conn.cursor()
 
 
+def clear_table():
+    # 清空表内容
+    cursor.execute('truncate table proxy_ip')
+    conn.commit()
+
+
 def crawl_xici_ip(pages):
     '''
     爬取一定页数上的所有代理ip,每爬完一页，就存入数据库
     :return:
     '''
+    clear_table()
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0"}
     for i in range(1, pages):
         response = requests.get(url='http://www.xicidaili.com/nn/{0}'.format(i), headers=headers)
@@ -55,5 +62,65 @@ def crawl_xici_ip(pages):
             conn.commit()
 
 
+# ip的管理类
+class IPUtil(object):
+    # noinspection SqlDialectInspection
+    def get_random_ip(self):
+        # 从数据库中随机获取一个可用的ip
+        random_sql = """
+              SELECT ip, port, type FROM proxy_ip
+            ORDER BY RAND()
+            LIMIT 1
+            """
+
+        result = cursor.execute(random_sql)
+        for ip_info in cursor.fetchall():
+            ip = ip_info[0]
+            port = ip_info[1]
+            ip_type = ip_info[2]
+
+            judge_re = self.judge_ip(ip, port, ip_type)
+            if judge_re:
+                return "{2}://{0}:{1}".format(ip, port, str(ip_type).lower())
+            else:
+                return self.get_random_ip()
+
+    def judge_ip(self, ip, port, ip_type):
+        # 判断ip是否可用
+        print 'begin judging ---->', ip, port, ip_type
+        http_url = "https://www.baidu.com"
+        proxy_url = "{2}://{0}:{1}".format(ip, port, str(ip_type).lower())
+        try:
+            proxy_dict = {
+                "http": proxy_url,
+            }
+            response = requests.get(http_url, proxies=proxy_dict)
+        except Exception as e:
+            print "invalid ip and port,cannot connect baidu"
+            self.delete_ip(ip)
+            return False
+        else:
+            code = response.status_code
+            if code >= 200 and code < 300:
+                print "effective ip"
+                return True
+            else:
+                print  "invalid ip and port,code is " + code
+                self.delete_ip(ip)
+                return False
+
+    # noinspection SqlDialectInspection
+    def delete_ip(self, ip):
+        # 从数据库中删除无效的ip
+        delete_sql = """
+            delete from proxy_ip where ip='{0}'
+        """.format(ip)
+        cursor.execute(delete_sql)
+        conn.commit()
+        return True
+
 if __name__ == '__main__':
-    crawl_xici_ip(pages=10)
+    # crawl_xici_ip(pages=10)
+    ip = IPUtil()
+    for i in range(20):
+        print ip.get_random_ip()
