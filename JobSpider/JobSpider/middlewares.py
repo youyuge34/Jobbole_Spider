@@ -7,6 +7,8 @@
 
 from scrapy import signals
 from fake_useragent import UserAgent
+from tools.crawl_ip import IPUtil
+import logging
 
 class JobspiderSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -78,3 +80,12 @@ class RandomUserAgentMiddlware(object):
 
         print  get_ua()
         request.headers.setdefault('User-Agent', get_ua())
+
+
+class RandomProxyMiddleware(object):
+    # 动态设置ip代理
+    def process_request(self, request, spider):
+        ip_util = IPUtil()
+        proxy_ip = ip_util.get_random_ip()
+        print 'using ip proxy:', proxy_ip
+        request.meta["proxy"] = proxy_ip

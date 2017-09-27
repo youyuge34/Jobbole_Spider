@@ -54,7 +54,9 @@ DOWNLOAD_DELAY = 0.25
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    'JobSpider.middlewares.RandomUserAgentMiddlware': 543,
+   # 'JobSpider.middlewares.RandomProxyMiddleware': 511,
    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+
 }
 
 # Enable or disable extensions

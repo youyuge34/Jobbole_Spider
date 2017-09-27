@@ -120,7 +120,7 @@ class IPUtil(object):
         return True
 
 if __name__ == '__main__':
-    # crawl_xici_ip(pages=10)
-    ip = IPUtil()
-    for i in range(20):
-        print ip.get_random_ip()
+    crawl_xici_ip(pages=3)
+    # ip = IPUtil()
+    # for i in range(20):
+    #     print ip.get_random_ip()
