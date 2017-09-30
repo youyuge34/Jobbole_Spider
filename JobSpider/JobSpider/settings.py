@@ -108,7 +108,7 @@ RANDOM_UA_TYPE = "random"
 MYSQL_HOST = '127.0.0.1'
 MYSQL_DBNAME = "test"
 MYSQL_USER = "root"
-MYSQL_PASSWORD = "qwert12345"
+MYSQL_PASSWORD = ""
 
 SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 SQL_DATE_FORMAT = "%Y-%m-%d"
