@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d8f585c-c171-4b37-9d47-59d6139f105a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/selenium_spider.py" />
+    <list default="true" id="3d8f585c-c171-4b37-9d47-59d6139f105a" name="Default" comment="8-2 微博自动登陆，网页自动下滑测试ok">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JobSpider/settings.py" afterPath="$PROJECT_DIR$/JobSpider/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/selenium_spider.py" afterPath="$PROJECT_DIR$/tools/selenium_spider.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,14 +15,14 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/JobSpider$main.coverage" NAME="main Coverage Results" MODIFIED="1506735539432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JobSpider" />
     <SUITE FILE_PATH="coverage/JobSpider$common.coverage" NAME="common Coverage Results" MODIFIED="1503280374380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JobSpider/utils" />
-    <SUITE FILE_PATH="coverage/JobSpider$selenium_spider.coverage" NAME="selenium_spider Coverage Results" MODIFIED="1506747203535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/JobSpider$selenium_spider.coverage" NAME="selenium_spider Coverage Results" MODIFIED="1507036557466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="jobbole.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpider/spiders/jobbole.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="823">
+            <state relative-caret-position="2464">
               <caret line="119" column="22" lean-forward="false" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
@@ -35,7 +34,7 @@
       <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpider/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1430">
+            <state relative-caret-position="1364">
               <caret line="69" column="5" lean-forward="false" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
               <folding>
                 <element signature="e#151#166#0" expanded="true" />
@@ -47,7 +46,7 @@
       <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpider/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2398">
+            <state relative-caret-position="2222">
               <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
               <folding>
                 <element signature="e#192#205#0" expanded="true" />
@@ -60,7 +59,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpider/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
+            <state relative-caret-position="1122">
               <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
@@ -70,7 +69,7 @@
       <file leaf-file-name="middlewares.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JobSpider/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
+            <state relative-caret-position="1584">
               <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
                 <element signature="e#168#194#0" expanded="true" />
@@ -82,9 +81,11 @@
       <file leaf-file-name="selenium_spider.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tools/selenium_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="-109">
+              <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+              <folding>
+                <element signature="e#99#129#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -196,8 +197,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,6 +230,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -423,14 +424,21 @@
       <option name="project" value="LOCAL" />
       <updated>1503455904135</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="selenium初步测试ok">
+      <created>1506782220647</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1506782220647</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21682848" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22330096" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -496,7 +504,8 @@
     <MESSAGE value="4-14 pipeline使用自带的mysql模块成功保存了数据，修复了create_date提取错误问题，测试ok" />
     <MESSAGE value="4-15 pipeline使用twist框架，异步写入MySQL，测试ok" />
     <MESSAGE value="4-17 封装了自定义itemloader，精简代码，提高了可复用性，测试ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="4-17 封装了自定义itemloader，精简代码，提高了可复用性，测试ok" />
+    <MESSAGE value="selenium初步测试ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="selenium初步测试ok" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -510,6 +519,24 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/JobSpider/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/selenium_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#99#129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JobSpider/spiders/jobbole.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -563,7 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -600,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="250" column="4" lean-forward="false" selection-start-line="250" selection-start-column="4" selection-end-line="250" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -734,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="149" column="0" lean-forward="true" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -742,7 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="121" column="4" lean-forward="false" selection-start-line="121" selection-start-column="4" selection-end-line="121" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -752,7 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4107">
           <caret line="122" column="8" lean-forward="false" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -760,7 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,7 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="311" column="57" lean-forward="true" selection-start-line="311" selection-start-column="57" selection-end-line="311" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -823,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -831,13 +849,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpider/items.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1430">
+        <state relative-caret-position="1364">
           <caret line="69" column="5" lean-forward="false" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
           <folding>
             <element signature="e#151#166#0" expanded="true" />
@@ -847,7 +864,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpider/spiders/jobbole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="823">
+        <state relative-caret-position="2464">
           <caret line="119" column="22" lean-forward="false" selection-start-line="119" selection-start-column="22" selection-end-line="119" selection-end-column="22" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
@@ -857,7 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpider/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2398">
+        <state relative-caret-position="2222">
           <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
           <folding>
             <element signature="e#192#205#0" expanded="true" />
@@ -876,7 +893,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpider/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
+        <state relative-caret-position="1122">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
@@ -884,7 +901,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JobSpider/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
+        <state relative-caret-position="1584">
           <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
             <element signature="e#168#194#0" expanded="true" />
@@ -892,11 +909,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/JobSpider/utils/zhihu_login_request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2376">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tools/selenium_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-109">
+          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <folding>
+            <element signature="e#99#129#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
