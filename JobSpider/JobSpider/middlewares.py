@@ -10,6 +10,7 @@ from fake_useragent import UserAgent
 from tools.crawl_ip import IPUtil
 import logging
 
+
 class JobspiderSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
@@ -89,3 +90,24 @@ class RandomProxyMiddleware(object):
         proxy_ip = ip_util.get_random_ip()
         print 'using ip proxy:', proxy_ip
         request.meta["proxy"] = proxy_ip
+
+
+from selenium import webdriver
+from scrapy.http import HtmlResponse
+
+
+class JSPageMiddleware(object):
+    # 通过edge请求动态网页，代替scrapy的downloader
+    def process_request(self, request, spider):
+        # 判断该spider是否为我们的目标
+        if spider.browser:
+            # browser = webdriver.Edge(
+            #     executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
+            spider.browser.get(request.url)
+            import time
+            time.sleep(3)
+            print ("访问:{0}".format(request.url))
+
+            # 直接返回给spider，而非再传给downloader
+            return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source, encoding="utf-8",
+                                request=request)

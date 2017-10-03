@@ -8,10 +8,28 @@ from JobSpider.utils.common import get_md5
 import datetime
 from scrapy.loader import ItemLoader
 
+
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
     start_urls = ['http://blog.jobbole.com/all-posts/page/1']
+
+    def __init__(self):
+        from selenium import webdriver
+
+        self.browser = webdriver.Edge(
+            executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
+        super(JobboleSpider, self).__init__()
+
+        from scrapy.xlib.pydispatch import dispatcher
+        from scrapy import signals
+
+        # 绑定信号量，当spider关闭时调用我们的函数
+        dispatcher.connect(self.spider_closed, signals.spider_closed)
+
+    def spider_closed(self, spider):
+        print 'spider closed'
+        self.browser.quit()
 
     def parse(self, response):
         """
