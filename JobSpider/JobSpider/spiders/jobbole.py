@@ -14,22 +14,36 @@ class JobboleSpider(scrapy.Spider):
     allowed_domains = ['blog.jobbole.com']
     start_urls = ['http://blog.jobbole.com/all-posts/page/1']
 
-    def __init__(self):
-        from selenium import webdriver
+    # def __init__(self):
+    #     from selenium import webdriver
+    #
+    #     self.browser = webdriver.Edge(
+    #         executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
+    #     super(JobboleSpider, self).__init__()
+    #
+    #     from scrapy.xlib.pydispatch import dispatcher
+    #     from scrapy import signals
+    #
+    #     # 绑定信号量，当spider关闭时调用我们的函数
+    #     dispatcher.connect(self.spider_closed, signals.spider_closed)
+    #
+    # def spider_closed(self, spider):
+    #     print 'spider closed'
+    #     self.browser.quit()
 
-        self.browser = webdriver.Edge(
-            executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
-        super(JobboleSpider, self).__init__()
+    # 收集伯乐在线所有404的url以及404页面数
+    handle_httpstatus_list = [404]
 
+    def __init__(self, **kwargs):
         from scrapy.xlib.pydispatch import dispatcher
         from scrapy import signals
+        self.fail_urls = []
+        dispatcher.connect(self.handle_spider_closed, signals.spider_closed)
+        super(JobboleSpider, self).__init__()
 
-        # 绑定信号量，当spider关闭时调用我们的函数
-        dispatcher.connect(self.spider_closed, signals.spider_closed)
-
-    def spider_closed(self, spider):
-        print 'spider closed'
-        self.browser.quit()
+    def handle_spider_closed(self, spider, reason):
+        self.crawler.stats.set_value("failed_urls", ",".join(self.fail_urls))
+        print 'failed urls:' + self.crawler.stats.get_value('failed_urls')
 
     def parse(self, response):
         """
@@ -37,6 +51,10 @@ class JobboleSpider(scrapy.Spider):
         2. 获取下一页的url并交给scrapy进行下载， 下载完成后交给parse
         """
         # 解析列表页中的所有文章url并交给scrapy下载后并进行解析
+        if response.status == 404:
+            self.fail_urls.append(response.url)
+            self.crawler.stats.inc_value("failed_url")
+
         post_nodes = response.css("#archive .floated-thumb .post-thumb a")
         for post_node in post_nodes:
             image_url = post_node.css("img::attr(src)").extract_first("")

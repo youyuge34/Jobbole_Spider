@@ -53,7 +53,7 @@ DOWNLOAD_DELAY = 0.25
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   'JobSpider.middlewares.JSPageMiddleware': 1,
+   # 'JobSpider.middlewares.JSPageMiddleware': 1,
    'JobSpider.middlewares.RandomUserAgentMiddlware': 543,
    # 'JobSpider.middlewares.RandomProxyMiddleware': 511,
    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,

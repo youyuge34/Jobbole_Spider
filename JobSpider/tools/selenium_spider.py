@@ -67,8 +67,21 @@ def oschina_auto_scroll():
         time.sleep(3)
 
 
+def test_phantomjs():
+    '''
+    无界面浏览器，适合centerOS等无界面系统，多进程情况下phantomjs性能会下降很严重
+    :return:
+    '''
+    browser = webdriver.PhantomJS(executable_path="F:/PythonProjects/Scrapy_Job/JobSpider/tools/phantomjs.exe")
+    browser.get(
+        "https://detail.tmall.com/item.htm?spm=a230r.1.14.3.yYBVG6&id=538286972599&cm_id=140105335569ed55e27b&abbucket=15&sku_properties=10004:709990523;5919063:6536025")
+
+    print (browser.page_source)
+    browser.quit()
+
 if __name__ == '__main__':
     # testTaobao()
     # zhihulogin()
     # weibo_login()
-    oschina_auto_scroll()
+    # oschina_auto_scroll()
+    test_phantomjs()
