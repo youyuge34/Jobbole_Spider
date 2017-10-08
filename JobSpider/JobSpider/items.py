@@ -156,3 +156,51 @@ class LagouJobItem(scrapy.Item):
         )
 
         return insert_sql, params
+
+
+class ReviewItemLoader(ItemLoader):
+    # 自定义itemloader
+    default_output_processor = TakeFirst()
+
+
+def shiftDate(value):
+    # 将亚马逊页面上review的时间转换成标准格式
+    return datetime.datetime.strptime(value.strip(), 'on %B %d, %Y').strftime(SQL_DATE_FORMAT)
+
+
+def shiftRating(value):
+    # 5.0 out of 5 stars 取5.0
+    value = value.strip()
+    if value:
+        return value.split(' ')[0]
+    else:
+        return '0'
+
+
+def shiftVote(value):
+    # 转换多少人觉得此评论有用
+    value = value.strip()
+    if 'found' in value:
+        return value.split(' ')[0]
+    else:
+        return '0'
+
+
+class AmazonRevItem(scrapy.Item):
+    # amazon review items structure
+    title = scrapy.Field()
+    url = scrapy.Field()
+    url_object_id = scrapy.Field()
+    author = scrapy.Field()
+    date = scrapy.Field(
+        input_processor=MapCompose(shiftDate)
+    )
+    rating = scrapy.Field(
+        input_processor=MapCompose(shiftRating)
+    )
+    content = scrapy.Field()
+    votes = scrapy.Field(
+        input_processor=MapCompose(shiftVote)
+    )
+    crawl_time = scrapy.Field(
+    )

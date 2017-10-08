@@ -99,7 +99,7 @@ class JsonExporterPipeline(object):
     """
 
     def __init__(self):
-        self.file = open('articleExporter.json', 'wb')
+        self.file = open('ReviewExporter.json', 'wb')
         self.expoter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
         self.expoter.start_exporting()
 

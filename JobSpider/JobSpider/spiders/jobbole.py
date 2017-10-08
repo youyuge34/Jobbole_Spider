@@ -14,6 +14,9 @@ class JobboleSpider(scrapy.Spider):
     allowed_domains = ['blog.jobbole.com']
     start_urls = ['http://blog.jobbole.com/all-posts/page/1']
 
+    custom_settings = {
+
+    }
     # def __init__(self):
     #     from selenium import webdriver
     #
