@@ -111,3 +111,18 @@ class JSPageMiddleware(object):
             # 直接返回给spider，而非再传给downloader
             return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source, encoding="utf-8",
                                 request=request)
+
+
+import json
+import random
+
+
+class ProxyMiddleware(object):
+    def __init__(self):
+        with open('proxy.txt', 'r') as f:
+            self.proxies = f.readlines()
+
+    def process_request(self, request, spider):
+        ip = random.choice(self.proxies)
+        print 'choosing---->', ip
+        request.meta['proxy'] = 'http://{0}'.format(ip)

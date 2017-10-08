@@ -10,6 +10,7 @@ import json
 from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exporters import JsonItemExporter
 from twisted.enterprise import adbapi
+from JobSpider.spiders.amazon import AmazonSpider
 
 import MySQLdb
 import MySQLdb.cursors
@@ -99,7 +100,7 @@ class JsonExporterPipeline(object):
     """
 
     def __init__(self):
-        self.file = open('ReviewExporter.json', 'wb')
+        self.file = open(AmazonSpider.FILE_NAME, 'wb')
         self.expoter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
         self.expoter.start_exporting()
 

@@ -34,7 +34,7 @@ DOWNLOAD_DELAY = 2
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+# COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -53,8 +53,9 @@ DOWNLOAD_DELAY = 2
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   # 'JobSpider.middlewares.JSPageMiddleware': 1,
+   'JobSpider.middlewares.JSPageMiddleware': 1,
    'JobSpider.middlewares.RandomUserAgentMiddlware': 543,
+   # 'JobSpider.middlewares.ProxyMiddleware': 542,
    # 'JobSpider.middlewares.RandomProxyMiddleware': 511,
    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 
@@ -113,3 +114,4 @@ MYSQL_PASSWORD = ""
 
 SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 SQL_DATE_FORMAT = "%Y-%m-%d"
+
