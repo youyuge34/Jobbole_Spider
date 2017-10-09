@@ -182,6 +182,8 @@ def shiftVote(value):
     value = value.strip()
     if 'found' in value:
         return value.split(' ')[0]
+    elif 'One' in value:
+        return '1'
     else:
         return '0'
 
