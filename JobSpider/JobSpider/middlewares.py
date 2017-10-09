@@ -105,7 +105,7 @@ class JSPageMiddleware(object):
             #     executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
             spider.browser.get(request.url)
             import time
-            time.sleep(3)
+            time.sleep(1)
             print ("访问:{0}".format(request.url))
 
             # 直接返回给spider，而非再传给downloader

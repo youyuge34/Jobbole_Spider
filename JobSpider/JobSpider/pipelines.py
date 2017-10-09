@@ -100,7 +100,7 @@ class JsonExporterPipeline(object):
     """
 
     def __init__(self):
-        self.file = open(AmazonSpider.FILE_NAME, 'wb')
+        self.file = open('output/' + AmazonSpider.FILE_NAME, 'wb')
         self.expoter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
         self.expoter.start_exporting()
 
