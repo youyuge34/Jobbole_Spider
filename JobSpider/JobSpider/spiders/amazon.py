@@ -11,35 +11,37 @@ import os
 
 class AmazonSpider(scrapy.Spider):
     name = 'amazon'
-    FILE_NAME = 'Downloader.json'
+    FILE_NAME = 'Facebook-2245.json'
     allowed_domains = ['amazon.com']
     start_urls = [
-        'https://www.amazon.com/AFTVnews-com-Downloader/dp/B01N0BP507/ref=zg_bs_mobile-apps_f_1?_encoding=UTF8&psc=1&refRID=3NV5QGMA8TBWG65KNRMD']
+        'https://www.amazon.com/Facebook/product-reviews/B0094BB4TW/ref=cm_cr_arp_d_paging_btm_2245?ie=UTF8&pageNumber=2245&reviewerType=all_reviews']
     logger = logging.getLogger('amazon_spider')
 
-    def __init__(self):
-        from selenium import webdriver
-
-        self.browser = webdriver.Edge(
-            executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
-
-        # 设置chromedriver不加载图片
-        # chrome_opt = webdriver.ChromeOptions()
-        # prefs = {"profile.managed_default_content_settings.images":2}
-        # chrome_opt.add_experimental_option("prefs", prefs)
-        #
-        # self.browser = webdriver.Chrome(executable_path=os.path.join(os.path.dirname(project_dir),'tools\chromedriver.exe'),chrome_options=chrome_opt)
-        super(AmazonSpider, self).__init__()
-
-        from scrapy.xlib.pydispatch import dispatcher
-        from scrapy import signals
-
-        # 绑定信号量，当spider关闭时调用我们的函数
-        dispatcher.connect(self.spider_closed, signals.spider_closed)
-
-    def spider_closed(self, spider):
-        print 'spider closed'
-        self.browser.quit()
+    # def __init__(self):
+    #     from selenium import webdriver
+    #
+    #     # self.browser = webdriver.Edge(
+    #     #     executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
+    #
+    #     # self.browser = webdriver.Firefox()
+    #     # self.browser = webdriver.PhantomJS(executable_path=os.path.join(os.path.dirname(project_dir),'tools/phantomjs'))
+    #     #设置chromedriver不加载图片
+    #     chrome_opt = webdriver.ChromeOptions()
+    #     prefs = {"profile.managed_default_content_settings.images":2}
+    #     chrome_opt.add_experimental_option("prefs", prefs)
+    #
+    #     self.browser = webdriver.Chrome(executable_path=os.path.join(os.path.dirname(project_dir),'tools/chromedriver2'),chrome_options=chrome_opt)
+    #     super(AmazonSpider, self).__init__()
+    #
+    #     from scrapy.xlib.pydispatch import dispatcher
+    #     from scrapy import signals
+    #
+    #     # 绑定信号量，当spider关闭时调用我们的函数
+    #     dispatcher.connect(self.spider_closed, signals.spider_closed)
+    #
+    # def spider_closed(self, spider):
+    #     print 'spider closed'
+    #     self.browser.quit()
 
     def parse(self, response):
         '''
@@ -97,3 +99,8 @@ class AmazonSpider(scrapy.Spider):
         else:
             self.logger.info('no more page!!!')
             # print response.text
+            with open(self.name + 'error.html', 'a') as f:
+                f.write(response.text.encode('utf-8'))
+            self.crawler.stats.inc_value("failed_url")
+            if self.crawler.stats.get_value("failed_url") < 5:
+                yield Request(url=response.url, callback=self.parse_detail)

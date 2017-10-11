@@ -4,9 +4,12 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import hashlib
 
 from scrapy import signals
 from fake_useragent import UserAgent
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
+import time
 from tools.crawl_ip import IPUtil
 import logging
 
@@ -86,10 +89,10 @@ class RandomUserAgentMiddlware(object):
 class RandomProxyMiddleware(object):
     # 动态设置ip代理
     def process_request(self, request, spider):
-        ip_util = IPUtil()
-        proxy_ip = ip_util.get_random_ip()
-        print 'using ip proxy:', proxy_ip
-        request.meta["proxy"] = proxy_ip
+        # ip_util = IPUtil()
+        # proxy_ip = ip_util.get_random_ip()
+        # print 'using ip proxy:', proxy_ip
+        request.meta["proxy"] = '121.237.163.180:24730'
 
 
 from selenium import webdriver
@@ -105,7 +108,7 @@ class JSPageMiddleware(object):
             #     executable_path='F:/PythonProjects/Scrapy_Job/JobSpider/tools/MicrosoftWebDriver.exe')
             spider.browser.get(request.url)
             import time
-            time.sleep(1)
+            time.sleep(3)
             print ("访问:{0}".format(request.url))
 
             # 直接返回给spider，而非再传给downloader
@@ -118,11 +121,41 @@ import random
 
 
 class ProxyMiddleware(object):
-    def __init__(self):
-        with open('proxy.txt', 'r') as f:
-            self.proxies = f.readlines()
+    orderno = "ZF201710108032AMX47f"
+    secret = "df6317ed89f2473d93d72c4a9ef6bb78"
 
     def process_request(self, request, spider):
-        ip = random.choice(self.proxies)
-        print 'choosing---->', ip
-        request.meta['proxy'] = 'http://{0}'.format(ip)
+        # ip = random.choice(self.proxies)
+        # print 'choosing---->', ip
+        request.meta['proxy'] = 'http://forward.xdaili.cn:80'
+
+        timestamp = str(int(time.time()))  # 计算时间戳
+        string = "orderno=" + self.orderno + "," + "secret=" + self.secret + "," + "timestamp=" + timestamp
+        md5_string = hashlib.md5(string).hexdigest()  # 计算sign
+        sign = md5_string.upper()  # 转换成大写
+
+        auth = "sign=" + sign + "&" + "orderno=" + self.orderno + "&" + "timestamp=" + timestamp
+        print auth
+        request.headers["Proxy-Authorization"] = auth
+
+
+class MyUserAgentMiddleware(UserAgentMiddleware):
+    '''
+    设置User-Agent
+    '''
+
+    def __init__(self, user_agent):
+        super(MyUserAgentMiddleware, self).__init__()
+        self.user_agent = user_agent
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            user_agent=crawler.settings.get('MY_USER_AGENT')
+        )
+
+    def process_request(self, request, spider):
+        agent = random.choice(self.user_agent)
+        request.headers['User-Agent'] = agent
+        print '-------->', agent
+        print request.headers
